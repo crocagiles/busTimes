@@ -7,13 +7,15 @@ import random
 
 time.sleep(5)
 
-lcd_rs        = 27
+# Raspberry Pi pin configuration:
+lcd_rs        = 27  # Note this might need to be changed to 21 for older revision Pi's.
 lcd_en        = 22
 lcd_d4        = 25
 lcd_d5        = 24
 lcd_d6        = 23
 lcd_d7        = 18
 lcd_backlight = 4
+
 
 lcd_columns = 16
 lcd_rows    = 2
@@ -29,11 +31,17 @@ while True:
     busTimes = greenHouseBusTimes()
     #for i in range(len(busTimes)):
     for bus in busTimes:
-        for minutes in bus:
-            print(minutes)
+        if len(bus) == 1:
+            print(bus[0])
+        elif len(bus) == 2:
+            print(bus[0])
+            print(bus[1])
+        else:
+            print('error')
         
     lcd.clear()
     #lcd.message(busTimes[i][0] + '\n' + busTimes[i][1])
+    lcd.message('bus')
     time.sleep(4)
     rand = 1#random.randrange(1, 20)
 
